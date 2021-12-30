@@ -8,7 +8,18 @@
   - T 형태의 데이터 snapshot을 '전달' 할 수 있는 일련의 이벤트를 비동기적으로 생성하는 기능
   - 하나 이상의 observers(관찰자)가 실시간으로 어떤 이벤트에 반응
   - 3가지 유형의 이벤트만 방출 ( next, error, completed )
-
+  
+#### Observable
+  - 비동기적
+  - marble diagram: 시간의 흐름에 따라서 값을 표시하는 방법
+  - rxmarbles.com 참고
+  
+#### Observable 생명주기
+  
+  
+--------
+  
+  
 
 ### 2. Operator (연산자)
 > 연산 작용
