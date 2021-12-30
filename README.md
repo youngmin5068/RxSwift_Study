@@ -52,3 +52,23 @@ end
 ```
 
   
+----------------
+  
+ ## Observable의 작은 범위 3가지 
+  - Single
+  - Maybe
+  - Completable
+  
+ ### Single
+  > .success, .error
+  1. .success = next + success ( 파일 다운로드 , 사진 저장 등등 )  
+  2. .error = next + error
+  
+ ### Maybe
+  > .success, .completed, .error   
+  
+ ### Completable
+  > .completed, .error
+  
+  > .success, .completed, .errorㅇㅏ이디 존재,
+  > .success, .completed, .error
