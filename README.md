@@ -69,6 +69,4 @@ end
   
  ### Completable
   > .completed, .error
-  
-  > .success, .completed, .errorㅇㅏ이디 존재,
-  > .success, .completed, .error
+
