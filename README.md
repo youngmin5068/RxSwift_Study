@@ -70,3 +70,125 @@ end
  ### Completable
   > .completed, .error
 
+  
+------------------
+ ## Subject
+  
+ ### PublishSubject
+  > 빈 상태로 시작하여 새로운 값만을 subscriber에 방출한다.
+  
+  <img width="769" alt="스크린샷 2021-12-31 오후 2 17 06" src="https://user-images.githubusercontent.com/61230321/147804783-20eea446-ba5f-44da-ba53-77d4bbc09df7.png">
+  
+  ```swift
+  let publishSubject = PublishSubject<String>()
+
+publishSubject.onNext("1. 안녕하세요")
+
+let 구독자1 = publishSubject
+    .subscribe(onNext:{
+        print("첫번째 구독자 : \($0)")
+    })
+
+publishSubject.onNext("2. 들리세요?")
+publishSubject.on(.next("3. 안 들리세요?"))
+
+구독자1.dispose()
+
+let 구독자2 = publishSubject
+    .subscribe(onNext:{
+        print("두번째 구독자 : \($0)")
+    })
+publishSubject.onNext("4. 여보세요")
+publishSubject.onCompleted()
+
+publishSubject.onNext("5. 끝났습니다.")
+
+구독자2.dispose()
+
+
+publishSubject
+    .subscribe {
+        print($0.element ?? $0)
+    }.dispose()
+
+publishSubject.onNext("6. 출력될까요")
+
+  
+  //결과
+ // -----publishSubject-----
+//첫번째 구독자 : 2. 들리세요?
+//첫번째 구독자 : 3. 안 들리세요?
+//두번째 구독자 : 4. 여보세요
+//completed
+  ```
+
+  
+  ### BehaviorSubject
+  > 하나의 초기값을 가진 상태로 시작하여, 새로운 subscriber에게 초기값 또는 최신값을 방출한다.
+  
+<img width="769" alt="스크린샷 2021-12-31 오후 2 17 52" src="https://user-images.githubusercontent.com/61230321/147804822-dd7577ae-99dd-4c5b-b0ce-adca05b26dd5.png">
+  
+  ```swift
+  enum SubjectError: Error {
+    case error1
+}
+
+let behaviorSubject = BehaviorSubject<String>(value: "0. 초기값")
+
+behaviorSubject.onNext("1. 첫번째 값")
+
+behaviorSubject.subscribe{
+    print("첫번째 구독 : ",$0.element ?? $0)
+}.disposed(by: disposebag)
+
+//behaviorSubject.onError(SubjectError.error1)
+
+behaviorSubject.subscribe{
+    print("두번째 구독 : ",$0.element ?? $0)
+}.disposed(by: disposebag)
+
+let value = try? behaviorSubject.value()
+print(value)
+  
+  //결과
+  //첫번째 구독 :  1. 첫번째 값
+//두번째 구독 :  1. 첫번째 값
+//Optional("1. 첫번째 값")
+  ```
+
+  
+  ### ReplaySubject
+  > 버퍼를 두고 초기화하며, 버퍼 사이즈 만큼의 값들을 유지하면서 새로운 subscriber에게 방출한다.
+  <img width="769" alt="스크린샷 2021-12-31 오후 2 18 41" src="https://user-images.githubusercontent.com/61230321/147804849-c7acbc54-8cbb-45f4-945b-caa9d56064f6.png">
+
+  ```swift
+  let replaySubject = ReplaySubject<String>.create(bufferSize: 3)
+
+replaySubject.onNext("1. 여러분")
+replaySubject.onNext("2. 안녕하세요")
+replaySubject.onNext("3. 저는")
+replaySubject.onNext("4. 김영민입니다.")
+
+replaySubject.subscribe{
+    print("첫번째 구독자 : ", $0.element ?? $0)
+}.disposed(by: disposebag)
+
+replaySubject.subscribe{
+    print("두번째 구독자 : ", $0.element ?? $0)
+}.disposed(by: disposebag)
+
+replaySubject.onNext("5. 반갑습니다.")
+replaySubject.onNext("6. 이제 끝이에요")
+  
+  //결과
+  //첫번째 구독자 :  2. 안녕하세요
+//첫번째 구독자 :  3. 저는
+//첫번째 구독자 :  4. 김영민입니다.
+//두번째 구독자 :  2. 안녕하세요
+//두번째 구독자 :  3. 저는
+//두번째 구독자 :  4. 김영민입니다.
+//첫번째 구독자 :  5. 반갑습니다.
+//두번째 구독자 :  5. 반갑습니다.
+//첫번째 구독자 :  6. 이제 끝이에요
+//두번째 구독자 :  6. 이제 끝이에요
+  ```
