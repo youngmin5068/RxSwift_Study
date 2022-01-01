@@ -192,3 +192,35 @@ replaySubject.onNext("6. 이제 끝이에요")
 //첫번째 구독자 :  6. 이제 끝이에요
 //두번째 구독자 :  6. 이제 끝이에요
   ```
+---------
+  ##Filtering Operator
+> ignore, elementAt, filter, skip,skipwhile,skipuntil, take, takewhile,takeuntil, enumerate, distinctUntilChanged
+  
+  1. ignore
+  - onCompleted() 전까지 모든 onNext 무시. 
+  2. elementAt
+  - .element(at: int) 를 통해 int 번째 onNext에서 방출. 
+  3. filter
+  - 조건에 따른 필터링 가능 (예 : 2의 배수만 방출시키기). 
+  4. skip
+  - .skip(int) 를 통해 int값 만큼 skip 후에 방출. 
+  5. skipwhile
+  - .skip(while: 조건문) 조건문이 false 일 때부터 방출. 
+  6. skipuntil
+  - .skip(until: Observable) 은 현재 Observable이 다른 Observable이 나오기 전까지 skip. 
+  7. take
+  - .take(int) 를 통해 처음부터 int만큼 방출.  
+  8. takewhile
+  - .take(while: 조건문) 조건문이 false이기 전까지 방출.  
+  9. takeuntil
+  - .take(until: Observable) 은 현재  Observable이 다른 Observable이 나오기 전까지 방출.  
+  > skip과 take는 반대 개념
+  
+  10. enumerate
+  - .enumerate() 를 통해 방출 시, (index: ,element: ) 형식으로 방출.  
+  11. distinctUntilChanged
+  - 연달아 중복되는 값은 방출하지 않고, 처음 값만 방출. 연달아 중복 아닌 경우 다시 방출.  
+  - (ex: "나는","니는","영민","영민","이다","영민" -> "나는","영민","이다","영민")
+  
+  
+  
