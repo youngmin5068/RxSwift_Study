@@ -193,7 +193,7 @@ replaySubject.onNext("6. 이제 끝이에요")
 //두번째 구독자 :  6. 이제 끝이에요
   ```
 ---------
-  ##Filtering Operator
+  ## Filtering Operator
 > ignore, elementAt, filter, skip,skipwhile,skipuntil, take, takewhile,takeuntil, enumerate, distinctUntilChanged
   
   1. ignore
