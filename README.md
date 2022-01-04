@@ -222,5 +222,18 @@ replaySubject.onNext("6. 이제 끝이에요")
   - 연달아 중복되는 값은 방출하지 않고, 처음 값만 방출. 연달아 중복 아닌 경우 다시 방출.  
   - (ex: "나는","니는","영민","영민","이다","영민" -> "나는","영민","이다","영민")
   
+ -----------------
   
+  ## TransformingOperator
+  > toArray, map, flatmap, flatmapLatest, materialize and dematerialize
   
+  1. toArray
+  - 배열로 만들어 줌.
+  2. map
+  - 배열과 같은 방식으로 mapping 해줌.
+  3. flatmap
+  - 중첩된 sequence일 때 사용
+  4. flatmapLatest
+  - 새로운 sequence가 onNext 된 이후에는 기존 sequence의 값 변경 불가, 네트워킹 조작에서 많이 사용됨.
+  5. materialize and dematerialize
+  - materialize는 onNext, error 등 모두 표시, dematerialize는 안의 내용만 표시하도록 다시 바꿔줌.
