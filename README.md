@@ -229,9 +229,9 @@ replaySubject.onNext("6. 이제 끝이에요")
   
   1. toArray
   - 배열로 만들어 줌.
-  2. map
+  2. map (연산 값을 return)
   - 배열과 같은 방식으로 mapping 해줌.
-  3. flatmap
+  3. flatmap (다른 observable을 return)
   - 중첩된 sequence일 때 사용
   4. flatmapLatest
   - 새로운 sequence가 onNext 된 이후에는 기존 sequence의 값 변경 불가, 네트워킹 조작에서 많이 사용됨.
