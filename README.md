@@ -285,3 +285,10 @@ replaySubject.onNext("6. 이제 끝이에요")
   - 결과만 방출
   12. scan
   - 덧셈 시 중간중간 결과 값 모두 방출
+  
+  ---------------------------------
+  
+  ## Time Based Operator
+  > replay, replayAll, buffer, window, delaySubscription, delay, interval, Timer, Timeout
+  
+  
