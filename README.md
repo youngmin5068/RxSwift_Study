@@ -237,3 +237,51 @@ replaySubject.onNext("6. 이제 끝이에요")
   - 새로운 sequence가 onNext 된 이후에는 기존 sequence의 값 변경 불가, 네트워킹 조작에서 많이 사용됨.
   5. materialize and dematerialize
   - materialize는 onNext, error 등 모두 표시, dematerialize는 안의 내용만 표시하도록 다시 바꿔줌.
+
+ -------------------------
+  
+  ## CombiningOperator
+  > startWith, concat, concatMap, merge, combineLatest, zip, withLatestFrom, sample, amb, switchLatest, reduce, scan
+  
+  1. startWith
+  - 현재 상태가 필요할 때, startWith으로 시작됨.  
+  - startWith은 위치의 제약을 받지 않음
+
+  
+  2. concat 
+  - 두 Observable을 연결
+  - 방식 1 : concat([Observable, Observable])
+  - 방식 2: Observable.concat(Observable)
+  
+  3. ConcatMap 
+  - flatMap과 비슷
+  - Observable 배열 안의 Observable을 연결
+  
+  4. merge
+  - 순서 보장 없이 합침.
+  - maxConcurrent 를 통해 받을 Observable 개수를 정함
+  
+  5. CombinLatest
+  - 값을 방출할 때마다 클로저 호출, 최신값 출력
+  
+  6. Zip
+  - 둘 중 하나의 Observable이 끝나면 Zip 전체가 끝남.
+  - 총 8개의 소스 조합 가능
+  
+  7. withLatestFrom
+  - 첫번째 Subject가 onNext 되어야 두번째 Subject 가장 최신의 값들만 방출 (트리거)
+  
+  8. sample
+  - withLatestFrom과 비슷하지만 첫번째 Subject가 onNext 여러번 되어도 한번만 방출
+  
+  9. amb
+  - 두 개의 Subject 중 하나의 Subject가 먼저 방출되면 그때 다른 Subject는 방출시켜도 무시 (ambigious)
+  
+  10. switchLatest
+  - 소스 Observable에서 들어온 마지막(최신) 시퀀스의 값만 방출
+
+  11. reduce
+  - 덧셈과 같은 것 가능
+  - 결과만 방출
+  12. scan
+  - 덧셈 시 중간중간 결과 값 모두 방출
