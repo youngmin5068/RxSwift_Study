@@ -289,6 +289,33 @@ replaySubject.onNext("6. 이제 끝이에요")
   ---------------------------------
   
   ## Time Based Operator
-  > replay, replayAll, buffer, window, delaySubscription, delay, interval, Timer, Timeout
+  > replay, replayAll, buffer, window, delaySubscription, delay, interval, Timer, Timeout  
+  > 시간에 흐름에 따라 데이터를 변동하고 제어하는 Operator
   
+  1. Replay
+  - replay의 버퍼 개수만큼 구독 전 과거의 이벤트 또한 출력
+  - .replay(Int)
   
+  2. replayAll
+  - 구독 전 모든 이벤트 출력
+  
+  3. buffer
+  - .buffer(timeSpan: .seconds(Int), //Int초마다     count: Int, //최대 Int개씩 Array의 형태로  scheduler: MainScheduler.instance)
+  
+  4. window
+  - .window(timeSpan: 만들시간, count: 만들어낼최대Observable수, scheduler: MainScheduler.instance)
+  
+  5. delaySubscripton
+  - Subscribe를 delay
+  
+  6. delay
+  - 전체 sequence를 delay함
+  
+  7. interval
+  - 주어진 시간 간격을 두고 주기마다, emit되는 옵저버블을 생성
+  
+  8. Timer
+  - 주어진 시간만큼 지난 이후 개별적으로 반환되는 옵저버블을 생성
+  
+  9. Timeout
+  - 제한시간을 걸어두는 것
